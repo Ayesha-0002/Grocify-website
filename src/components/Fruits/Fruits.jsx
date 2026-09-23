@@ -1,8 +1,9 @@
 import React from 'react'
+import CategoryPage from '../CategoryPage/CategoryPage'
 
 const Fruits = () => {
   return (
-    <div>Fruits</div>
+    <CategoryPage title= "Fruits & Veggies" />
   )
 }
 
