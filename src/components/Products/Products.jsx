@@ -3,6 +3,7 @@ import Heading from '../Heading/Heading'
 import productList from '../productList/productList.js'
 import Cards from '../Cards/Cards.jsx'
 import Button from '../Button/Button.jsx'
+import { Link } from 'react-router-dom'
 const Products = () => {
   const categories = ['All', 'Fruits', 'Vegetables', 'Dairy', 'SeaFood']
   const [activeTab, setactiveTab] = useState('All')
@@ -43,7 +44,7 @@ const Products = () => {
 
 
 <div className='flex justify-center mt-15'>
-  <Button content= "View All" />
+  <Link to= "/AllProducts" className='bg-gradient-to-b from-orange-400 to-orange-500 text-white px-8 py-3 rounded-full md:text-lg text-md hover:scale-105 hover:to-orange-600 transition-all duration-300 cursor-pointer'>View All</Link>
 </div>
 </div>
     </section>
