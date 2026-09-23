@@ -3,7 +3,7 @@ import CategoryPage from '../CategoryPage/CategoryPage'
 import BgFruits from '../../assets/fruits-banner.jpg'
 const Fruits = () => {
   return (
-    <CategoryPage title= "Fruits & Veggies" bgImage={BgFruits} />
+    <CategoryPage title= "Fruits & Veggies" bgImage={BgFruits} categories={['Fruits', 'Vegetables']}/>
   )
 }
 
