@@ -4,6 +4,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 // import required modules
 import { Navigation } from 'swiper/modules';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { FaStar } from "react-icons/fa";
+
 import Heading from '../Heading/Heading'
 import Customer1 from '../../assets/customer1.jpg'
 import Customer2 from '../../assets/customer2.jpg'
@@ -21,49 +23,65 @@ const Testimonials = () => {
       <div className='max-w-[1400px] px-10 py-20 mx-auto'>
         <Heading highlight='Customers' heading='Saying' />
         {/* main card div */}
-        <div className='flex justify-end gap-x-3 py-5 '>
+        <div className='flex justify-end gap-x-3 py-5 mt-5   '>
 
           <button className='custom-prev text-2xl rounded-lg flex justify-center items-center text-zinc-800 bg-zinc-100 h-11 w-11 hover:bg-gradient-to-b hover:from-orange-400 hover:to-orange-500 hover:text-white cursor-pointer '>
             <IoIosArrowBack />
-          <button className='custom-next text-2xl rounded-lg flex justify-center items-center text-zinc-800 bg-zinc-100 h-11 w-11 hover:bg-gradient-to-b hover:from-orange-400 hover:to-orange-500 hover:text-white cursor-pointer'>
-            <IoIosArrowForward />
-          </button >
           </button>
+            <button className='custom-next text-2xl rounded-lg flex justify-center items-center text-zinc-800 bg-zinc-100 h-11 w-11 hover:bg-gradient-to-b hover:from-orange-400 hover:to-orange-500 hover:text-white cursor-pointer'>
+              <IoIosArrowForward />
+            </button >
         </div>
 
 
-                <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-                  {
-                    review.map(item => {
-                      return (
-                        /* testimonials card */
+        <Swiper navigation={
+          {
+            nextEl: ".custom-next",
+            prevEl: ".custom-prev"
+          }}
+          loop={true}
+          breakpoints={{ 
+            640: {slidesPerView : 1, spaceBetween : 20},
+            768: {slidesPerView : 2, spaceBetween : 20},
+            1024: {slidesPerView : 3, spaceBetween : 20},
+          }
+          }
+          modules={[Navigation]}
+          className="mySwiper">
+          {
+            review.map(item => {
+              return (
+                /* testimonials card */
 
-                        <SwiperSlide className='bg-zinc-100 p-8 rounded-xl'>
-                          <div className='flex gap-5 items-center'>
-                            <div className='w-16 h-16 rounded-full bg-red-500 outlne-2 outline-offset-4 outline-orange-500'>
-                            </div>
-                            <h1 className='text-xl font-bold'>{item.name}</h1>
-                            <p className='text-zinc-600'>{item.profession}</p>
-                            <span>{item.rating}</span>
+                <SwiperSlide key={item.id} className='bg-zinc-100 p-8 rounded-xl'>
+                  <div className=' flex gap-5 items-center'>
+                    <div className='w-16 h-16 rounded-full  outline-2 outline-offset-4 outline-orange-500 overflow-hidden'>
+                     <img src= {item.image}className='w-full h-full ' />
+                    </div>
+                    <div className='flex flex-col'>
 
-                           </div>
-                          <div className='mt-10'>
-                            <p className='text-zinc-600'>{item.para}</p>
-                          </div>
-                        </SwiperSlide>
+                    <h1 className='text-xl font-bold'>{item.name}</h1>
+                    <p className='text-zinc-600'>{item.profession}</p>
+                    <span className='flex text-yellow-400 text-xl gap-1 mt-3'>
+                      {Array.from({length: item.rating}, (_, index)=>(
+                        <FaStar />
+                      ))}
+                    </span>
+                      </div>
 
-                      )
-                    })
-                  }
-         </Swiper>
-        navigation= {
-        {
-          nextEl: "custom-next",
-          prevEl: "custom-prev"
-        }
-        }
-</div>
-    
+                  </div>
+                  <div className='mt-10 min-h-[15vh]'>
+                    <p className='text-zinc-600'>{item.para}</p>
+                  </div>
+                </SwiperSlide>
+
+              )
+            })
+          }
+        </Swiper>
+
+      </div>
+
     </section>
   )
 }
